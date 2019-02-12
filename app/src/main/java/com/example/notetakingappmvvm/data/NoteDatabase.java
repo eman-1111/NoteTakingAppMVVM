@@ -14,13 +14,22 @@ public abstract  class NoteDatabase  extends RoomDatabase {
     public abstract NoteDao noteDao();
 
 
-    public static synchronized NoteDatabase getIance(Context context){
-        if(instance == null){
-            instance = Room.databaseBuilder(context.getApplicationContext(),
-                    NoteDatabase.class,"note_database")
-                    .fallbackToDestructiveMigration().build();
 
+    private static final String LOG_TAG = NoteDatabase.class.getSimpleName();
+    private static final String DATABASE_NAME = "note_table";
+
+    private static final Object LOCK = new Object();
+    private static volatile NoteDatabase sInstance;
+
+    public static NoteDatabase getInstance(Context context){
+        if(sInstance == null){
+            synchronized (LOCK){
+                if(sInstance == null){
+                    sInstance = Room.databaseBuilder(context.getApplicationContext(),
+                            NoteDatabase.class, NoteDatabase.DATABASE_NAME).build();
+                }
+            }
         }
-        return instance;
+        return sInstance;
     }
 }
