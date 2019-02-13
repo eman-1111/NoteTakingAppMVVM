@@ -36,6 +36,7 @@ public class NoteRepository {
             synchronized (LOCK) {
                 sInstance = new NoteRepository(mNoteDao, mAppExecutors);
                 Log.d(LOG_TAG, "Made new repository");
+
             }
         }
         return sInstance;
