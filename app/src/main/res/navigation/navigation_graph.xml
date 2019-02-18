@@ -20,5 +20,9 @@
         android:id="@+id/secondFragment"
         android:name="com.example.notetakingappmvvm.ui.save_note.AddNoteFragment"
         android:label="fragment_add"
-        tools:layout="@layout/fragment_add_note" />
+        tools:layout="@layout/fragment_add_note">
+    <action
+        android:id="@+id/save_action"
+        app:popUpTo="@id/fragment_main"/>
+    </fragment>
 </navigation>

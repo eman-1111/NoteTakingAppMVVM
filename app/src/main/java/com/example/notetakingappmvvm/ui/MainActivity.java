@@ -1,4 +1,4 @@
-package com.example.notetakingappmvvm.ui.note_list;
+package com.example.notetakingappmvvm.ui;
 
 
 import android.os.Bundle;

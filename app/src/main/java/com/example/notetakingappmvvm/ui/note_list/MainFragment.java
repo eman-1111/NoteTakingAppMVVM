@@ -37,13 +37,8 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         recyclerView =(RecyclerView) rootView.findViewById(R.id.recycler_view);
+        setUpRecycler();
         FloatingActionButton buttonAddNote = rootView.findViewById(R.id.button_add_note);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setHasFixedSize(true);
-
-        adapter = new NoteAdapter();
-        recyclerView.setAdapter(adapter);
 
         NoteListModelFactory factory = InjectorUtils.provideNoteListViewModelFactory(getContext());
 
@@ -68,6 +63,11 @@ public class MainFragment extends Fragment {
 
     private void setUpRecycler() {
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setHasFixedSize(true);
+
+        adapter = new NoteAdapter();
+        recyclerView.setAdapter(adapter);
 
 
     }
