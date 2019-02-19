@@ -14,15 +14,15 @@
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/mainToAdd"
-            app:destination="@id/secondFragment" />
+            app:destination="@id/secondFragment"
+            app:enterAnim="@anim/slide_out_top"
+            app:exitAnim="@anim/slide_in_top"
+            app:popEnterAnim="@anim/slide_out_top"
+            app:popExitAnim="@anim/slide_in_top" />
     </fragment>
     <fragment
         android:id="@+id/secondFragment"
         android:name="com.example.notetakingappmvvm.ui.save_note.AddNoteFragment"
         android:label="fragment_add"
-        tools:layout="@layout/fragment_add_note">
-    <action
-        android:id="@+id/save_action"
-        app:popUpTo="@id/fragment_main"/>
-    </fragment>
+        tools:layout="@layout/fragment_add_note"/>
 </navigation>
