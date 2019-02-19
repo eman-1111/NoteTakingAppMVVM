@@ -32,7 +32,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder> {
         holder.textViewDescription.setText(currentNote.getDescription());
         holder.textViewPriority.setText(String.valueOf(currentNote.getPriority()));
     }
-
+    public Note getNoteAt(int position) {
+        return notes.get(position);
+    }
     @Override
     public int getItemCount() {
         return notes.size();
