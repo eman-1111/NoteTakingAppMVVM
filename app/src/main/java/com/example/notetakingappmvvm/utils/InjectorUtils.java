@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.notetakingappmvvm.AppExecutors;
 import com.example.notetakingappmvvm.data.NoteDatabase;
 import com.example.notetakingappmvvm.data.NoteRepository;
+import com.example.notetakingappmvvm.ui.edit_note.EditNoteModelFactory;
 import com.example.notetakingappmvvm.ui.note_list.NoteListModelFactory;
 import com.example.notetakingappmvvm.ui.save_note.SaveNoteModelFactory;
 
@@ -28,6 +29,9 @@ public class InjectorUtils {
         return new SaveNoteModelFactory(repository);
     }
 
-
+    public static EditNoteModelFactory provideEditNoteViewModelFactory(Context context) {
+        NoteRepository repository = provideRepository(context.getApplicationContext());
+        return new EditNoteModelFactory(repository);
+    }
 
 }

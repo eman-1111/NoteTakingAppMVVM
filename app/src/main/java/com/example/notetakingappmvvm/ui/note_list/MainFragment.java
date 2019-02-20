@@ -47,8 +47,8 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        recyclerView =(RecyclerView) rootView.findViewById(R.id.recycler_view);
+        final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         setUpRecycler();
         FloatingActionButton buttonAddNote = rootView.findViewById(R.id.button_add_note);
 
@@ -62,7 +62,8 @@ public class MainFragment extends Fragment {
             public void onChanged(@Nullable List<Note> notes) {
                 adapter.setNotes(notes);
             }
-        });        setHasOptionsMenu(true);
+        });
+        setHasOptionsMenu(true);
 
         buttonAddNote.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +71,18 @@ public class MainFragment extends Fragment {
                 Navigation.findNavController(v).navigate(R.id.mainToAdd);
             }
         });
+        adapter.setOnItemClickListener(new NoteAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Note note) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("idArg",note.getId());
+                bundle.putInt("priorityArg",note.getPriority());
+                bundle.putString("TitleArg", note.getTitle());
+                bundle.putString("DescriptionArg", note.getDescription());
 
+                Navigation.findNavController(rootView).navigate(R.id.main_to_edit, bundle);
+            }
+        });
         return rootView;
     }
 
@@ -82,7 +94,8 @@ public class MainFragment extends Fragment {
         adapter = new NoteAdapter();
         recyclerView.setAdapter(adapter);
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,  ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;

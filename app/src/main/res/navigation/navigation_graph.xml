@@ -14,15 +14,49 @@
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/mainToAdd"
-            app:destination="@id/secondFragment"
+            app:destination="@id/saveFragment"
             app:enterAnim="@anim/slide_out_top"
             app:exitAnim="@anim/slide_in_top"
             app:popEnterAnim="@anim/slide_out_top"
             app:popExitAnim="@anim/slide_in_top" />
+        <action
+            android:id="@+id/main_to_edit"
+            app:destination="@id/editNoteFragment"
+            app:enterAnim="@anim/slide_out_top"
+            app:exitAnim="@anim/slide_in_top"
+            app:popEnterAnim="@anim/slide_out_top"
+            app:popExitAnim="@anim/slide_in_top"/>
+
+
     </fragment>
     <fragment
-        android:id="@+id/secondFragment"
+        android:id="@+id/saveFragment"
         android:name="com.example.notetakingappmvvm.ui.save_note.AddNoteFragment"
         android:label="fragment_add"
-        tools:layout="@layout/fragment_add_note"/>
+        tools:layout="@layout/fragment_add_note">
+
+    </fragment>
+    <fragment
+        android:id="@+id/editNoteFragment"
+        android:name="com.example.notetakingappmvvm.ui.edit_note.EditNoteFragment"
+        android:label="edit_note_fragment"
+        tools:layout="@layout/edit_note_fragment" >
+        <argument
+            android:name="priorityArg"
+            app:argType="integer"
+            android:defaultValue="1" />
+        <argument
+            android:name="idArg"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="TitleArg"
+            app:argType="string"
+            android:defaultValue=" " />
+        <argument
+            android:name="DescriptionArg"
+            app:argType="string"
+            android:defaultValue=" " />
+    </fragment>
+
 </navigation>
